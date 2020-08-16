@@ -33,18 +33,26 @@
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
 
-                @if($errors->all())
+                @if($errors->all() || \Illuminate\Support\Facades\Session::has('login-error'))
                     <div class="notification error large margin-bottom-55">
                         <h4>Error!</h4>
-                        <p>The account or password does not exist!</p>
+
+                        @if(\Illuminate\Support\Facades\Session::has('login-error'))
+                            <p>{{ \Illuminate\Support\Facades\Session::get('login-error') }}</p>
+
+                        @else
+                            @foreach($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach
+                        @endif
                     </div>
                 @endif
 
                 @if(\Illuminate\Support\Facades\Session::has('register-success'))
-                        <div class="notification success large margin-bottom-55">
-                            <h4>Success!</h4>
-                            <p>{{ \Illuminate\Support\Facades\Session::get('register-success') }}</p>
-                        </div>
+                    <div class="notification success large margin-bottom-55">
+                        <h4>Success!</h4>
+                        <p>{{ \Illuminate\Support\Facades\Session::get('register-success') }}</p>
+                    </div>
                 @endif
 
                 <button class="button social-login via-gplus"><i class="fa fa-google-plus"></i> Log In With Google Plus
@@ -66,14 +74,16 @@
                                 <p class="form-row form-row-wide">
                                     <label for="username">Username:
                                         <i class="im im-icon-Male"></i>
-                                        <input type="text" class="input-text" name="username" id="username" value=""/>
+                                        <input type="text" class="input-text" name="username" id="username" value=""
+                                               required/>
                                     </label>
                                 </p>
 
                                 <p class="form-row form-row-wide">
                                     <label for="password">Password:
                                         <i class="im im-icon-Lock-2"></i>
-                                        <input class="input-text" type="password" name="password" id="password"/>
+                                        <input class="input-text" type="password" name="password" id="password"
+                                               required/>
                                     </label>
                                 </p>
 
@@ -101,28 +111,32 @@
                                 <p class="form-row form-row-wide">
                                     <label for="username2">Username:
                                         <i class="im im-icon-Male"></i>
-                                        <input type="text" class="input-text" name="username" id="username2" value=""/>
+                                        <input type="text" class="input-text" name="username" id="username2" value=""
+                                               required/>
                                     </label>
                                 </p>
 
                                 <p class="form-row form-row-wide">
                                     <label for="email2">Email Address:
                                         <i class="im im-icon-Mail"></i>
-                                        <input type="text" class="input-text" name="email" id="email2" value=""/>
+                                        <input type="text" class="input-text" name="email" id="email2" value=""
+                                               required/>
                                     </label>
                                 </p>
 
                                 <p class="form-row form-row-wide">
                                     <label for="password1">Password:
                                         <i class="im im-icon-Lock-2"></i>
-                                        <input class="input-text" type="password" name="password1" id="password1"/>
+                                        <input class="input-text" type="password" name="password1" id="password1"
+                                               required/>
                                     </label>
                                 </p>
 
                                 <p class="form-row form-row-wide">
                                     <label for="password2">Repeat Password:
                                         <i class="im im-icon-Lock-2"></i>
-                                        <input class="input-text" type="password" name="password2" id="password2"/>
+                                        <input class="input-text" type="password" name="password1_confirmation"
+                                               id="password2" required/>
                                     </label>
                                 </p>
 

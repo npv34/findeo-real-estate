@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,7 @@ class AuthController extends Controller
             return redirect()->route('page.home');
         }
 
+        Session::flash('login-error','The account or password does not exist!');
         return redirect()->route('auth.showFormLogin');
     }
 
@@ -36,7 +38,7 @@ class AuthController extends Controller
         return redirect()->route('page.home');
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
         $user = new User();
         $user->fill($request->all());
