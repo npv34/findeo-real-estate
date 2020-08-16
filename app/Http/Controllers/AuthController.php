@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -13,7 +16,8 @@ class AuthController extends Controller
         return view('layout.login-register');
     }
 
-    public function login(LoginRequest $request) {
+    public function login(LoginRequest $request)
+    {
         $data = [
             'username' => $request->username,
             'password' => $request->password
@@ -32,5 +36,15 @@ class AuthController extends Controller
         return redirect()->route('page.home');
     }
 
+    public function register(Request $request)
+    {
+        $user = new User();
+        $user->fill($request->all());
+        $user->password = Hash::make($request->password1);
+        $user->role = RoleConstant::USER;
+        $user->save();
+        Session::flash('register-success','Register for a successful account');
+        return redirect()->route('auth.showFormLogin');
+    }
 
 }

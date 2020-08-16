@@ -40,7 +40,15 @@
                     </div>
                 @endif
 
-                <button class="button social-login via-gplus"><i class="fa fa-google-plus"></i> Log In With Google Plus</button>
+                @if(\Illuminate\Support\Facades\Session::has('register-success'))
+                        <div class="notification success large margin-bottom-55">
+                            <h4>Success!</h4>
+                            <p>{{ \Illuminate\Support\Facades\Session::get('register-success') }}</p>
+                        </div>
+                @endif
+
+                <button class="button social-login via-gplus"><i class="fa fa-google-plus"></i> Log In With Google Plus
+                </button>
                 <!--Tab -->
                 <div class="my-account style-1 margin-top-5 margin-bottom-40">
 
@@ -70,14 +78,16 @@
                                 </p>
 
                                 <p class="form-row">
-                                    <input type="submit" class="button border margin-top-10" name="login" value="Login" />
+                                    <input type="submit" class="button border margin-top-10" name="login"
+                                           value="Login"/>
 
                                     <label for="rememberme" class="rememberme">
-                                        <input name="rememberme" type="checkbox" id="rememberme" value="forever" /> Remember Me</label>
+                                        <input name="rememberme" type="checkbox" id="rememberme" value="forever"/>
+                                        Remember Me</label>
                                 </p>
 
                                 <p class="lost_password">
-                                    <a href="#" >Lost Your Password?</a>
+                                    <a href="#">Lost Your Password?</a>
                                 </p>
 
                             </form>
@@ -86,19 +96,19 @@
                         <!-- Register -->
                         <div class="tab-content" id="tab2" style="display: none;">
 
-                            <form method="post" class="register">
-
+                            <form method="post" class="register" action="{{ route('auth.register') }}">
+                                @csrf
                                 <p class="form-row form-row-wide">
                                     <label for="username2">Username:
                                         <i class="im im-icon-Male"></i>
-                                        <input type="text" class="input-text" name="username" id="username2" value="" />
+                                        <input type="text" class="input-text" name="username" id="username2" value=""/>
                                     </label>
                                 </p>
 
                                 <p class="form-row form-row-wide">
                                     <label for="email2">Email Address:
                                         <i class="im im-icon-Mail"></i>
-                                        <input type="text" class="input-text" name="email" id="email2" value="" />
+                                        <input type="text" class="input-text" name="email" id="email2" value=""/>
                                     </label>
                                 </p>
 
@@ -117,7 +127,8 @@
                                 </p>
 
                                 <p class="form-row">
-                                    <input type="submit" class="button border fw margin-top-10" name="register" value="Register" />
+                                    <input type="submit" class="button border fw margin-top-10" name="register"
+                                           value="Register"/>
                                 </p>
 
                             </form>
@@ -125,7 +136,6 @@
 
                     </div>
                 </div>
-
 
 
             </div>
