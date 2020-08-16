@@ -134,9 +134,9 @@
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"></script>
+
+    @yield('script')
 </div>
 <!-- Wrapper / End -->
-
-
 </body>
 </html>

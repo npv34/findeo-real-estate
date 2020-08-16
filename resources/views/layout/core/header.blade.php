@@ -11,17 +11,6 @@
                 <ul class="top-bar-menu">
                     <li><i class="fa fa-phone"></i> (123) 123-456 </li>
                     <li><i class="fa fa-envelope"></i> <a href="#">office@example.com</a></li>
-                    <li>
-                        <div class="top-bar-dropdown">
-                            <span>Dropdown Menu</span>
-                            <ul class="options">
-                                <li><div class="arrow"></div></li>
-                                <li><a href="#">Nice First Link</a></li>
-                                <li><a href="#">Second Link With Long Title</a></li>
-                                <li><a href="#">Third Link</a></li>
-                            </ul>
-                        </div>
-                    </li>
                 </ul>
 
             </div>
@@ -74,16 +63,8 @@
                 <!-- Main Navigation -->
                 <nav id="navigation" class="style-1">
                     <ul id="responsive">
-
                         <li><a class="current" href="#">Home</a>
-                            <ul>
-                                <li><a href="index.html">Home 1</a></li>
-                                <li><a href="index-2.html">Home 2</a></li>
-                                <li><a href="index-3.html">Home 3</a></li>
-                                <li><a href="index-4.html">Home 4</a></li>
-                            </ul>
                         </li>
-
                         <li><a href="#">Listings</a>
                             <ul>
                                 <li><a href="#">List Layout</a>
@@ -180,7 +161,7 @@
                 <!-- Header Widget -->
                 <div class="header-widget">
                     <a href="login-register.html" class="sign-in"><i class="fa fa-user"></i> Log In / Register</a>
-                    <a href="submit-property.html" class="button border">Submit Property</a>
+                    <a href="{{ route('house.create') }}" class="button border">Submit Property</a>
                 </div>
                 <!-- Header Widget / End -->
             </div>
