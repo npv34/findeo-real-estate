@@ -22,7 +22,7 @@
         <div class="col-md-12">
             <div class="submit-page">
 
-                <div class="notification notice large margin-bottom-55">
+                <div class="notification notice large margin-bottom-55" >
                     <h4>Don't Have an Account?</h4>
                     <p>If you don't have an account you can create one by entering your email address in contact details section. A password will be automatically emailed to you.</p>
                 </div>

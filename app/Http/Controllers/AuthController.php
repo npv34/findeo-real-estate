@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -12,7 +13,7 @@ class AuthController extends Controller
         return view('layout.login-register');
     }
 
-    public function login(Request $request) {
+    public function login(LoginRequest $request) {
         $data = [
             'username' => $request->username,
             'password' => $request->password
