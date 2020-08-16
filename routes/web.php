@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'HomeController@index');
-Route::get('submit-house', 'HouseController@create')->name('house.create');
+Route::get('/', 'HomeController@index')->name('page.home');
 Route::get('login-register', 'AuthController@showFormLogin')->name('auth.showFormLogin');
+Route::post('login', 'AuthController@login')->name('auth.login');
+
+Route::middleware('auth')->group(function (){
+    Route::get('submit-house', 'HouseController@create')->name('house.create');
+    Route::get('logout', 'AuthController@logout')->name('auth.logout');
+});

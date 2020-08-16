@@ -49,8 +49,8 @@
 
                         <!-- Login -->
                         <div class="tab-content" id="tab1" style="display: none;">
-                            <form method="post" class="login">
-
+                            <form method="post" class="login" action="{{ route('auth.login') }}">
+                                @csrf
                                 <p class="form-row form-row-wide">
                                     <label for="username">Username:
                                         <i class="im im-icon-Male"></i>

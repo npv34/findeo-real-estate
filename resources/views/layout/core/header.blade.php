@@ -160,7 +160,22 @@
             <div class="right-side">
                 <!-- Header Widget -->
                 <div class="header-widget">
-                    <a href="{{ route('auth.showFormLogin') }}" class="sign-in"><i class="fa fa-user"></i> Log In / Register</a>
+
+                    @if(\Illuminate\Support\Facades\Auth::check())
+                        <!-- User Menu -->
+                            <div class="user-menu">
+                                <div class="user-name"><span><img src="images/agent-03.jpg" alt=""></span>Hi, {{ \Illuminate\Support\Facades\Auth::user()->username }}!</div>
+                                <ul>
+                                    <li><a href="my-profile.html"><i class="sl sl-icon-user"></i> My Profile</a></li>
+                                    <li><a href="my-bookmarks.html"><i class="sl sl-icon-star"></i> Bookmarks</a></li>
+                                    <li><a href="my-properties.html"><i class="sl sl-icon-docs"></i> My Properties</a></li>
+                                    <li><a href="index.html"><i class="sl sl-icon-power"></i> Log Out</a></li>
+                                </ul>
+                            </div>
+                    @else
+                        <a href="{{ route('auth.showFormLogin') }}" class="sign-in"><i class="fa fa-user"></i> Log In / Register</a>
+                    @endif
+
                     <a href="{{ route('house.create') }}" class="button border">Submit Property</a>
                 </div>
                 <!-- Header Widget / End -->
