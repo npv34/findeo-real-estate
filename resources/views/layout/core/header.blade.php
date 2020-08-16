@@ -160,7 +160,7 @@
             <div class="right-side">
                 <!-- Header Widget -->
                 <div class="header-widget">
-                    <a href="login-register.html" class="sign-in"><i class="fa fa-user"></i> Log In / Register</a>
+                    <a href="{{ route('auth.showFormLogin') }}" class="sign-in"><i class="fa fa-user"></i> Log In / Register</a>
                     <a href="{{ route('house.create') }}" class="button border">Submit Property</a>
                 </div>
                 <!-- Header Widget / End -->
