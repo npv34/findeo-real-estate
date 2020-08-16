@@ -169,7 +169,7 @@
                                     <li><a href="my-profile.html"><i class="sl sl-icon-user"></i> My Profile</a></li>
                                     <li><a href="my-bookmarks.html"><i class="sl sl-icon-star"></i> Bookmarks</a></li>
                                     <li><a href="my-properties.html"><i class="sl sl-icon-docs"></i> My Properties</a></li>
-                                    <li><a href="index.html"><i class="sl sl-icon-power"></i> Log Out</a></li>
+                                    <li><a href="{{ route('auth.logout') }}"><i class="sl sl-icon-power"></i> Log Out</a></li>
                                 </ul>
                             </div>
                     @else
