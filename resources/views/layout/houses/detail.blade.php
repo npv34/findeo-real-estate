@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <a href="" class="back-to-listings"></a>
+                    <a href="{{ route('page.home') }}" class="back-to-listings"></a>
                     <div class="property-title">
                         <h2>{{ $house->title }} <span class="property-badge">{{ $house->getStatus() }}</span></h2>
                         <span>

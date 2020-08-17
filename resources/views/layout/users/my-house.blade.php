@@ -85,7 +85,7 @@
                         </td>
                         <td class="expire-date">December 30, 2021</td>
                         <td class="action">
-                            <a href="#"><i class="fa fa-pencil"></i> Edit</a>
+                            <a href="{{ route('house.edit', $house->id) }}"><i class="fa fa-pencil"></i> Edit</a>
                             <a href="{{ route('house.upload_file', $house->id) }}"><i class="fa  fa-file-image-o"></i> Upload image</a>
                             <a href="{{ route('house.delete', $house->id) }}" onclick="return confirm('You are sure?')" class="delete"><i class="fa fa-remove"></i> Delete</a>
                         </td>

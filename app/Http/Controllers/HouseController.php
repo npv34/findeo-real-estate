@@ -95,4 +95,10 @@ class HouseController extends Controller
         $similarHouse = House::where('type', $house->type)->get();
         return view('layout.houses.detail', compact('house','similarHouse'));
     }
+
+    public function edit($id)
+    {
+        $house = House::findOrFail($id);
+        return view('layout.houses.edit', compact('house'));
+    }
 }
