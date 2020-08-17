@@ -32,4 +32,19 @@ class House extends Model
     {
         return ($this->status == "1") ? 'For Sale' : 'For Rent';
     }
+
+    public function images()
+    {
+        return $this->hasMany(ImageHouse::class);
+    }
+
+    public function isImage()
+    {
+        return $this->images->count() > 0;
+    }
+
+    public function firstImage()
+    {
+        return $this->images->first();
+    }
 }

@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2><i class="fa fa-plus-circle"></i> Add Property</h2>
+                <h2><i class="fa fa-plus-circle"></i> Add House</h2>
             </div>
         </div>
     </div>

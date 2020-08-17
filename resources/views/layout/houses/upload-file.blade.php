@@ -1,4 +1,3 @@
-
 @extends('master')
 
 @section('content')
@@ -10,20 +9,25 @@
             </form>
         </div>
     </div>
+    <!-- DropZone | Documentation: http://dropzonejs.com -->
+
 @endsection
 
 @section('script')
-    <!-- DropZone | Documentation: http://dropzonejs.com -->
     <script type="text/javascript" src="{{ asset('scripts/dropzone.js') }}"></script>
     <script>
         $(".dropzone").dropzone({
             addRemoveLinks: true,
             dictDefaultMessage: "<i class='sl sl-icon-plus'></i> Click here or drop files to upload",
             autoQueue: true,
-            dictRemoveFile: 'Remove file',
-            removedfile: function (file) {
-                console.log(file.name)
-            }
+            acceptedFiles: 'image/*',
+            dictInvalidFileType: "You can't upload files of this type.", // Default: You can't upload files of this type.
+            dictUploadCanceled: "Upload canceled.", // Default: Upload canceled.
+            dictRemoveFile: 'Remove',
+            // removedfile: function (file) {
+            //     let name = file.name.replace(/\s+/g, '-').toLowerCase();
+            //     console.log(file.upload_ticket)
+            // }
         });
     </script>
 @endsection

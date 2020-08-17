@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    let origin = location.origin;
+    let origin = location.hostname;
 
     $('#submit-house').click(function () {
         let data = $(":input").serializeArray();

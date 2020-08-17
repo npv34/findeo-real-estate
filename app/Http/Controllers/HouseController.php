@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\House;
 use App\Http\Requests\CreateHouseRequest;
+use App\ImageHouse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class HouseController extends Controller
 {
@@ -33,8 +36,24 @@ class HouseController extends Controller
         return response()->json($res);
     }
 
-    public function upload(Request $request)
+    public function upload(Request $request, $id)
     {
-        dd($request->all());
+        $house = House::findOrFail($request->id);
+        $file = $request->file;
+        $nameImage = time() . '-' . str_replace(" ",'-', $file->getClientOriginalName());
+        $file->move('file-upload', Str::lower($nameImage));
+        $image = new ImageHouse();
+        $image->url = 'file-upload/' . Str::lower($nameImage);
+        $image->house_id = $house->id;
+        $image->save();
+    }
+
+    public function delete($id)
+    {
+        $house = House::findOrFail($id);
+        $house->images()->delete();
+        $house->delete();
+        Session::flash('delete_success', 'Delete Success!');
+        return back();
     }
 }

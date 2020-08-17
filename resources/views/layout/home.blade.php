@@ -193,15 +193,23 @@
                                     </div>
 
                                     <div class="listing-img-content">
-                                        <span class="listing-price">$ {{ number_format($house->price) }} <i>$520 / sq ft</i></span>
+                                        <span
+                                            class="listing-price">$ {{ number_format($house->price) }} <i>$520 / sq ft</i></span>
                                         <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
                                         <span class="compare-button with-tip" data-tip-content="Add to Compare"></span>
                                     </div>
 
                                     <div class="listing-carousel">
-                                        <div><img src="images/listing-01.jpg" alt=""></div>
-                                        <div><img src="images/listing-01b.jpg" alt=""></div>
-                                        <div><img src="images/listing-01c.jpg" alt=""></div>
+                                        @if($house->images->count() > 0)
+                                            @foreach($house->images->take(3) as $image)
+                                                <div><img src="{{ asset($image->url) }}" height="285" alt=""></div>
+                                            @endforeach
+                                        @else
+                                            <div><img src="images/listing-01.jpg" alt=""></div>
+                                            <div><img src="images/listing-01b.jpg" alt=""></div>
+                                            <div><img src="images/listing-01c.jpg" alt=""></div>
+                                        @endif
+
                                     </div>
 
                                 </a>
@@ -209,7 +217,9 @@
                                 <div class="listing-content">
 
                                     <div class="listing-title">
-                                        <h4><a href="single-property-page-1.html">{{ \Illuminate\Support\Str::limit($house->title, 10) }}</a></h4>
+                                        <h4>
+                                            <a href="single-property-page-1.html">{{ \Illuminate\Support\Str::limit($house->title, 20) }}</a>
+                                        </h4>
                                         <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
                                            class="listing-address popup-gmaps">
                                             <i class="fa fa-map-marker"></i>
@@ -217,11 +227,11 @@
                                         </a>
                                     </div>
 
-{{--                                    <ul class="listing-features">--}}
-{{--                                        <li>Area <span>530 sq ft</span></li>--}}
-{{--                                        <li>Bedrooms <span></span></li>--}}
-{{--                                        <li>Bathrooms <span>1</span></li>--}}
-{{--                                    </ul>--}}
+                                    {{--                                    <ul class="listing-features">--}}
+                                    {{--                                        <li>Area <span>530 sq ft</span></li>--}}
+                                    {{--                                        <li>Bedrooms <span></span></li>--}}
+                                    {{--                                        <li>Bathrooms <span>1</span></li>--}}
+                                    {{--                                    </ul>--}}
 
                                     <div class="listing-footer">
                                         <a href="#"><i class="fa fa-user"></i> {{ $house->user->username }}</a>
