@@ -69,8 +69,9 @@ class HouseController extends Controller
         }
 
         if ($request->type) {
-            $result = $result->where('title', 'like', '%'.$request->keyword.'%');
+            $result = $result->where('type', '=', $request->type);
         }
+
 
         if ($request->min_price) {
             $result = $result->where('price', '>=', $request->min_price);
@@ -80,11 +81,18 @@ class HouseController extends Controller
             $result = $result->where('price', '<=', $request->max_price);
         }
 
-        if ($request->tab !== 0) {
+        if ($request->tab != 0) {
             $result = $result->where('status', '<=', $request->tab);
         }
 
         $houses = $result->get();
         return view('layout.houses.search', compact('houses'));
+    }
+
+    public function detail($id)
+    {
+        $house = House::findOrFail($id);
+        $similarHouse = House::where('type', $house->type)->get();
+        return view('layout.houses.detail', compact('house','similarHouse'));
     }
 }

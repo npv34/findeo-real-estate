@@ -16,8 +16,8 @@
 
                             <!-- Main Search -->
                             <form class="main-search-form" method="get" action="{{ route('house.search') }}">
-                                @csrf
-                                <!-- Type -->
+                            @csrf
+                            <!-- Type -->
                                 <div class="search-type">
                                     <label class="active"><input class="first-tab" name="tab" checked="checked"
                                                                  type="radio" value="0">Any Status</label>
@@ -42,7 +42,8 @@
 
                                         <!-- Property Type -->
                                         <div class="col-md-4">
-                                            <select data-placeholder="Any Type" name="type" class="chosen-select-no-single">
+                                            <select data-placeholder="Any Type" name="type"
+                                                    class="chosen-select-no-single">
                                                 <option value="1">Apartment</option>
                                                 <option value="2">House</option>
                                                 <option value="3">Commercial</option>
@@ -54,7 +55,8 @@
                                         <div class="col-md-4">
                                             <!-- Select Input -->
                                             <div class="select-input">
-                                                <input type="text" name="min-price" placeholder="Min Price" data-unit="USD">
+                                                <input type="text" name="min-price" placeholder="Min Price"
+                                                       data-unit="USD">
                                             </div>
                                             <!-- Select Input / End -->
                                         </div>
@@ -63,7 +65,8 @@
 
                                             <!-- Select Input -->
                                             <div class="select-input">
-                                                <input type="text" name="max-price" placeholder="Max Price" data-unit="USD">
+                                                <input type="text" name="max-price" placeholder="Max Price"
+                                                       data-unit="USD">
                                             </div>
                                             <!-- Select Input / End -->
 
@@ -98,72 +101,73 @@
             <!-- Carousel -->
             <div class="col-md-12">
                 <div class="carousel">
+                @if($houses)
+                    @foreach($houses as $house)
+                        <!-- Listing Item -->
+                            <div class="carousel-item">
+                                <div class="listing-item">
 
-                @foreach($houses as $house)
-                    <!-- Listing Item -->
-                        <div class="carousel-item">
-                            <div class="listing-item">
+                                    <a href="{{ route('house.detail', $house->id) }}" class="listing-img-container">
 
-                                <a href="single-property-page-1.html" class="listing-img-container">
+                                        <div class="listing-badges">
+                                            <span class="featured">Featured</span>
+                                            <span>{{ $house->getStatus() }}</span>
+                                        </div>
 
-                                    <div class="listing-badges">
-                                        <span class="featured">Featured</span>
-                                        <span>{{ $house->getStatus() }}</span>
-                                    </div>
-
-                                    <div class="listing-img-content">
+                                        <div class="listing-img-content">
                                         <span
                                             class="listing-price">VND {{ number_format($house->price) }}
                                             @if($house->area)
-                                            <i>{{ number_format($house->area) }} / sq ft</i>
+                                                <i>{{ number_format($house->area) }} / sq ft</i>
                                             @endif
                                         </span>
-                                        <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
-                                        <span class="compare-button with-tip" data-tip-content="Add to Compare"></span>
-                                    </div>
+                                            <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
+                                            <span class="compare-button with-tip"
+                                                  data-tip-content="Add to Compare"></span>
+                                        </div>
 
-                                    <div class="listing-carousel">
-                                        @if($house->images->count() > 0)
-                                            @foreach($house->images->take(3) as $image)
-                                                <div><img src="{{ asset($image->url) }}" height="285" alt=""></div>
-                                            @endforeach
-                                        @else
-                                            <div><img src="{{ asset('images/listing-01.jpg') }}" alt=""></div>
-                                            <div><img src="{{ asset('images/listing-01.jpg') }}" alt=""></div>
-                                            <div><img src="{{ asset('images/listing-01.jpg') }}" alt=""></div>
-                                        @endif
+                                        <div class="listing-carousel">
+                                            @if($house->images->count() > 0)
+                                                @foreach($house->images->take(3) as $image)
+                                                    <div><img src="{{ asset($image->url) }}" height="285" alt=""></div>
+                                                @endforeach
+                                            @else
+                                                <div><img src="{{ asset('images/listing-01.jpg') }}" alt=""></div>
+                                                <div><img src="{{ asset('images/listing-01.jpg') }}" alt=""></div>
+                                                <div><img src="{{ asset('images/listing-01.jpg') }}" alt=""></div>
+                                            @endif
 
-                                    </div>
+                                        </div>
 
-                                </a>
+                                    </a>
 
-                                <div class="listing-content">
+                                    <div class="listing-content">
 
-                                    <div class="listing-title">
-                                        <h4>
-                                            <a href="">{{ \Illuminate\Support\Str::limit($house->title, 20) }}</a>
-                                        </h4>
-                                        <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
-                                           class="listing-address popup-gmaps">
-                                            <i class="fa fa-map-marker"></i>
-                                            {{ $house->getAddress() }}
-                                        </a>
-                                    </div>
+                                        <div class="listing-title">
+                                            <h4>
+                                                <a href="{{ route('house.detail', $house->id) }}">{{ \Illuminate\Support\Str::limit($house->title, 20) }}</a>
+                                            </h4>
+                                            <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
+                                               class="listing-address popup-gmaps">
+                                                <i class="fa fa-map-marker"></i>
+                                                {{ $house->getAddress() }}
+                                            </a>
+                                        </div>
 
-                                    <div class="listing-footer">
-                                        <a href="#"><i class="fa fa-user"></i> {{ $house->user->username }}</a>
-                                        <span><i class="fa fa-calendar-o"></i> {{ $house->diffForHumans() }}</span>
+                                        <div class="listing-footer">
+                                            <a href="#"><i class="fa fa-user"></i> {{ $house->user->username }}</a>
+                                            <span><i class="fa fa-calendar-o"></i> {{ $house->diffForHumans() }}</span>
+                                        </div>
+
                                     </div>
 
                                 </div>
-
                             </div>
-                        </div>
 
-                        <!-- Listing Item / End -->
-                    @endforeach
+                            <!-- Listing Item / End -->
 
-
+                        @endforeach
+                    @endif
                 </div>
             </div>
             <!-- Carousel / End -->
@@ -256,76 +260,6 @@
         </div>
     </section>
     <!-- Fullwidth Section / End -->
-    <!-- Container -->
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-12">
-                <h3 class="headline centered margin-bottom-35 margin-top-10">Most Popular Places <span>Properties In Most Popular Places</span>
-                </h3>
-            </div>
-
-            <div class="col-md-4">
-
-                <!-- Image Box -->
-                <a href="listings-list-with-sidebar.html" class="img-box"
-                   data-background-image="images/popular-location-01.jpg">
-
-                    <!-- Badge -->
-                    <div class="listing-badges">
-                        <span class="featured">Featured</span>
-                    </div>
-
-                    <div class="img-box-content visible">
-                        <h4>New York </h4>
-                        <span>14 Properties</span>
-                    </div>
-                </a>
-
-            </div>
-
-            <div class="col-md-8">
-
-                <!-- Image Box -->
-                <a href="listings-list-with-sidebar.html" class="img-box"
-                   data-background-image="images/popular-location-02.jpg">
-                    <div class="img-box-content visible">
-                        <h4>Los Angeles</h4>
-                        <span>24 Properties</span>
-                    </div>
-                </a>
-
-            </div>
-
-            <div class="col-md-8">
-
-                <!-- Image Box -->
-                <a href="listings-list-with-sidebar.html" class="img-box"
-                   data-background-image="images/popular-location-03.jpg">
-                    <div class="img-box-content visible">
-                        <h4>San Francisco </h4>
-                        <span>12 Properties</span>
-                    </div>
-                </a>
-
-            </div>
-
-            <div class="col-md-4">
-
-                <!-- Image Box -->
-                <a href="listings-list-with-sidebar.html" class="img-box"
-                   data-background-image="images/popular-location-04.jpg">
-                    <div class="img-box-content visible">
-                        <h4>Miami</h4>
-                        <span>9 Properties</span>
-                    </div>
-                </a>
-
-            </div>
-
-        </div>
-    </div>
-    <!-- Container / End -->
     <!-- Fullwidth Section -->
     <section class="fullwidth margin-top-95 margin-bottom-0">
 

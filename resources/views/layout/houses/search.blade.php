@@ -100,7 +100,11 @@
                             </div>
 
                             <div class="listing-img-content">
-                                <span class="listing-price">VND {{ number_format($house->price) }} <i>$520 / sq ft</i></span>
+                                <span class="listing-price">VND {{ number_format($house->price) }}
+                                    @if($house->area)
+                                        <i>{{ number_format($house->area) }} / sq ft</i>
+                                    @endif
+                                </span>
                                 <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
                                 <span class="compare-button with-tip" data-tip-content="Add to Compare"></span>
                             </div>
@@ -122,13 +126,13 @@
                         <div class="listing-content">
 
                             <div class="listing-title">
-                                <h4><a href="single-property-page-1.html">{{ $house->title }}</a></h4>
+                                <h4><a href="{{ route('house.detail', $house->id) }}">{{ $house->title }}</a></h4>
                                 <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom" class="listing-address popup-gmaps">
                                     <i class="fa fa-map-marker"></i>
                                     {{ $house->getAddress() }}
                                 </a>
 
-                                <a href="single-property-page-1.html" class="details button border">Details</a>
+                                <a href="{{ route('house.detail', $house->id) }}" class="details button border">Details</a>
                             </div>
 
                             <ul class="listing-details">
