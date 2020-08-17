@@ -75,7 +75,11 @@ $(document).ready(function () {
                 let html = '<div class="notification success large margin-bottom-55">\n' +
                     '                    <h4>Register success!</h4>\n' +
                     '                </div>'
-                $('#message-register').html(html)
+                $('#message-register').html(html);
+                $('#username2').val('');
+                $('#email2').val('');
+                $('#password1').val('');
+                $('#password2').val('');
             },
             error: function (xhr, status, error) {
                 $.each(xhr.responseJSON.errors, function (key, item) {
