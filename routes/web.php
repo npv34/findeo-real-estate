@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function (){
         Route::post('/{id}/file_upload', 'HouseController@upload')->name('house.upload');
         Route::post('/store', 'HouseController@store')->name('house.store');
         Route::get('/{id}/delete','HouseController@delete')->name('house.delete');
+        Route::get('/search','HouseController@search')->name('house.search');
     });
 
     Route::prefix('me')->group(function (){

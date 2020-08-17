@@ -56,4 +56,35 @@ class HouseController extends Controller
         Session::flash('delete_success', 'Delete Success!');
         return back();
     }
+
+    public function search(Request $request)
+    {
+        $result = House::query();
+
+        if ($request->keyword) {
+            $result = $result->where('city', 'like', '%'.$request->keyword.'%')
+                            ->orWhere('address','like', '%'.$request->keyword.'%')
+                            ->orWhere('state','like', '%'.$request->keyword.'%')
+                            ->orWhere('zip_code','like', '%'.$request->keyword.'%');
+        }
+
+        if ($request->type) {
+            $result = $result->where('title', 'like', '%'.$request->keyword.'%');
+        }
+
+        if ($request->min_price) {
+            $result = $result->where('price', '>=', $request->min_price);
+        }
+
+        if ($request->max_price) {
+            $result = $result->where('price', '<=', $request->max_price);
+        }
+
+        if ($request->tab !== 0) {
+            $result = $result->where('status', '<=', $request->tab);
+        }
+
+        $houses = $result->get();
+        return view('layout.houses.search', compact('houses'));
+    }
 }

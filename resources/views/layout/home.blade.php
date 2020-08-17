@@ -15,14 +15,14 @@
                             <h2>Find Your Dream Home</h2>
 
                             <!-- Main Search -->
-                            <form class="main-search-form">
-
+                            <form class="main-search-form" method="get" action="{{ route('house.search') }}">
+                                @csrf
                                 <!-- Type -->
                                 <div class="search-type">
                                     <label class="active"><input class="first-tab" name="tab" checked="checked"
-                                                                 type="radio">Any Status</label>
-                                    <label><input name="tab" type="radio">For Sale</label>
-                                    <label><input name="tab" type="radio">For Rent</label>
+                                                                 type="radio" value="0">Any Status</label>
+                                    <label><input name="tab" type="radio" value="1">For Sale</label>
+                                    <label><input name="tab" type="radio" value="2">For Rent</label>
                                     <div class="search-type-arrow"></div>
                                 </div>
 
@@ -32,9 +32,9 @@
 
                                     <!-- Main Search Input -->
                                     <div class="main-search-input larger-input">
-                                        <input type="text" class="ico-01" id="autocomplete-input"
+                                        <input type="text" name="keyword" class="ico-01"
                                                placeholder="Enter address e.g. street, city and state or zip" value=""/>
-                                        <button class="button">Search</button>
+                                        <button type="submit" class="button">Search</button>
                                     </div>
 
                                     <!-- Row -->
@@ -42,35 +42,28 @@
 
                                         <!-- Property Type -->
                                         <div class="col-md-4">
-                                            <select data-placeholder="Any Type" class="chosen-select-no-single">
-                                                <option>Any Type</option>
-                                                <option>Apartments</option>
-                                                <option>Houses</option>
-                                                <option>Commercial</option>
-                                                <option>Garages</option>
-                                                <option>Lots</option>
+                                            <select data-placeholder="Any Type" name="type" class="chosen-select-no-single">
+                                                <option value="1">Apartment</option>
+                                                <option value="2">House</option>
+                                                <option value="3">Commercial</option>
+                                                <option value="4">Garage</option>
+                                                <option value="5">Lot</option>
                                             </select>
                                         </div>
-
-
                                         <!-- Min Price -->
                                         <div class="col-md-4">
-
                                             <!-- Select Input -->
                                             <div class="select-input">
-                                                <input type="text" placeholder="Min Price" data-unit="USD">
+                                                <input type="text" name="min-price" placeholder="Min Price" data-unit="USD">
                                             </div>
                                             <!-- Select Input / End -->
-
                                         </div>
-
-
                                         <!-- Max Price -->
                                         <div class="col-md-4">
 
                                             <!-- Select Input -->
                                             <div class="select-input">
-                                                <input type="text" placeholder="Max Price" data-unit="USD">
+                                                <input type="text" name="max-price" placeholder="Max Price" data-unit="USD">
                                             </div>
                                             <!-- Select Input / End -->
 
@@ -79,82 +72,8 @@
                                     </div>
                                     <!-- Row / End -->
 
-
-                                    <!-- More Search Options -->
-                                    <a href="#" class="more-search-options-trigger" data-open-title="More Options"
-                                       data-close-title="Less Options"></a>
-
-                                    <div class="more-search-options">
-                                        <div class="more-search-options-container">
-
-                                            <!-- Row -->
-                                            <div class="row with-forms">
-
-                                                <!-- Min Price -->
-                                                <div class="col-md-6">
-
-                                                    <!-- Select Input -->
-                                                    <div class="select-input">
-                                                        <input type="text" placeholder="Min Area" data-unit="Sq Ft">
-                                                    </div>
-                                                    <!-- Select Input / End -->
-
-                                                </div>
-
-                                                <!-- Max Price -->
-                                                <div class="col-md-6">
-
-                                                    <!-- Select Input -->
-                                                    <div class="select-input">
-                                                        <input type="text" placeholder="Max Area" data-unit="Sq Ft">
-                                                    </div>
-                                                    <!-- Select Input / End -->
-
-                                                </div>
-
-                                            </div>
-                                            <!-- Row / End -->
-
-
-                                            <!-- Row -->
-                                            <div class="row with-forms">
-
-                                                <!-- Min Area -->
-                                                <div class="col-md-6">
-                                                    <select data-placeholder="Beds" class="chosen-select-no-single">
-                                                        <option label="blank"></option>
-                                                        <option>Beds (Any)</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
-                                                </div>
-
-                                                <!-- Max Area -->
-                                                <div class="col-md-6">
-                                                    <select data-placeholder="Baths" class="chosen-select-no-single">
-                                                        <option label="blank"></option>
-                                                        <option>Baths (Any)</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                    </select>
-                                                </div>
-
-                                            </div>
-                                            <!-- Row / End -->
-                                        </div>
-                                    </div>
-                                    <!-- More Search Options / End -->
-
-
                                 </div>
                                 <!-- Box / End -->
-
                             </form>
                             <!-- Main Search -->
 
@@ -194,7 +113,11 @@
 
                                     <div class="listing-img-content">
                                         <span
-                                            class="listing-price">$ {{ number_format($house->price) }} <i>$520 / sq ft</i></span>
+                                            class="listing-price">VND {{ number_format($house->price) }}
+                                            @if($house->area)
+                                            <i>{{ number_format($house->area) }} / sq ft</i>
+                                            @endif
+                                        </span>
                                         <span class="like-icon with-tip" data-tip-content="Add to Bookmarks"></span>
                                         <span class="compare-button with-tip" data-tip-content="Add to Compare"></span>
                                     </div>
@@ -205,9 +128,9 @@
                                                 <div><img src="{{ asset($image->url) }}" height="285" alt=""></div>
                                             @endforeach
                                         @else
-                                            <div><img src="images/listing-01.jpg" alt=""></div>
-                                            <div><img src="images/listing-01b.jpg" alt=""></div>
-                                            <div><img src="images/listing-01c.jpg" alt=""></div>
+                                            <div><img src="{{ asset('images/listing-01.jpg') }}" alt=""></div>
+                                            <div><img src="{{ asset('images/listing-01.jpg') }}" alt=""></div>
+                                            <div><img src="{{ asset('images/listing-01.jpg') }}" alt=""></div>
                                         @endif
 
                                     </div>
@@ -218,7 +141,7 @@
 
                                     <div class="listing-title">
                                         <h4>
-                                            <a href="single-property-page-1.html">{{ \Illuminate\Support\Str::limit($house->title, 20) }}</a>
+                                            <a href="">{{ \Illuminate\Support\Str::limit($house->title, 20) }}</a>
                                         </h4>
                                         <a href="https://maps.google.com/maps?q=221B+Baker+Street,+London,+United+Kingdom&hl=en&t=v&hnear=221B+Baker+St,+London+NW1+6XE,+United+Kingdom"
                                            class="listing-address popup-gmaps">
@@ -226,12 +149,6 @@
                                             {{ $house->getAddress() }}
                                         </a>
                                     </div>
-
-                                    {{--                                    <ul class="listing-features">--}}
-                                    {{--                                        <li>Area <span>530 sq ft</span></li>--}}
-                                    {{--                                        <li>Bedrooms <span></span></li>--}}
-                                    {{--                                        <li>Bathrooms <span>1</span></li>--}}
-                                    {{--                                    </ul>--}}
 
                                     <div class="listing-footer">
                                         <a href="#"><i class="fa fa-user"></i> {{ $house->user->username }}</a>
