@@ -41,9 +41,9 @@ class HouseController extends Controller
         $house = House::findOrFail($request->id);
         $file = $request->file;
         $nameImage = time() . '-' . str_replace(" ",'-', $file->getClientOriginalName());
-        $file->move('file-upload', Str::lower($nameImage));
+        $file->move('file_upload', Str::lower($nameImage));
         $image = new ImageHouse();
-        $image->url = 'file-upload/' . Str::lower($nameImage);
+        $image->url = 'file_upload/' . Str::lower($nameImage);
         $image->house_id = $house->id;
         $image->save();
     }

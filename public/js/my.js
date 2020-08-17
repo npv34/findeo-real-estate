@@ -33,7 +33,7 @@ $(document).ready(function () {
                     $('input[name="state"]').val('');
                     $('input[name="zip_code"]').val('');
                     $('input[name="description"]').val('');
-                    window.location.href = origin + '/houses/' + response.house_id + '/file-upload'
+                    window.location.href = origin + '/houses/' + response.house_id + '/file_upload'
                 }else {
                     console.log("no")
                 }
