@@ -93,7 +93,6 @@
     <div class="clearfix"></div>
     <!-- Header Container / End -->
 
-
     @yield('content')
     <!-- Footer
     ================================================== -->

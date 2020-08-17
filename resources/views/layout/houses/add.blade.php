@@ -101,10 +101,7 @@
 
 
                 <!-- Section -->
-                <h3>Gallery</h3>
-                <div class="submit-section">
-                    @include('layout.houses.upload-file')
-                </div>
+
                 <!-- Section / End -->
 
 
@@ -167,18 +164,4 @@
     </div>
 </div>
 @endsection
-@section('script')
-    <!-- DropZone | Documentation: http://dropzonejs.com -->
-    <script type="text/javascript" src="{{ asset('scripts/dropzone.js') }}"></script>
-    <script>
-        $(".dropzone").dropzone({
-            addRemoveLinks: true,
-            dictDefaultMessage: "<i class='sl sl-icon-plus'></i> Click here or drop files to upload",
-            autoQueue: true,
-            dictRemoveFile: 'Remove file',
-            removedfile: function (file) {
-                console.log(file.name)
-            }
-        });
-    </script>
-@endsection
+

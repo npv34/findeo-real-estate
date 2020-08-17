@@ -15,7 +15,8 @@ class HouseController extends Controller
 
     public function uploadFile(Request $request)
     {
-        dd($request->all());
+        $house = House::findOrFail($request->id);
+        return view('layout.houses.upload-file', compact('house'));
     }
 
     public function store(CreateHouseRequest $request)
@@ -26,8 +27,14 @@ class HouseController extends Controller
 
         $res = [
             'status' => 'success',
-            'message' => 'Create success'
+            'message' => 'Create success',
+            'house_id' => $house->id
         ];
         return response()->json($res);
+    }
+
+    public function upload(Request $request)
+    {
+        dd($request->all());
     }
 }

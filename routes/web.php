@@ -23,7 +23,8 @@ Route::middleware('auth')->group(function (){
     Route::get('logout', 'AuthController@logout')->name('auth.logout');
 
     Route::prefix('houses')->group(function (){
-        Route::post('/file-upload', 'HouseController@uploadFile')->name('house.upload_file');
+        Route::get('/{id}/file-upload', 'HouseController@uploadFile')->name('house.upload_file');
+        Route::post('/{id}/file-upload', 'HouseController@upload')->name('house.upload');
         Route::post('/store', 'HouseController@store')->name('house.store');
     });
 });
