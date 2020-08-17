@@ -45,8 +45,13 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password1);
         $user->role = RoleConstant::USER;
         $user->save();
-        Session::flash('register-success','Register for a successful account');
-        return redirect()->route('auth.showFormLogin');
+
+        $data = [
+            'status' => 'success',
+            'message' => 'Register for a successful account'
+        ];
+
+        return response()->json($data);
     }
 
 }

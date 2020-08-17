@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    let origin = location.origin;
+
     $('#submit-house').click(function () {
         let data = $(":input").serializeArray();
 
@@ -9,7 +11,6 @@ $(document).ready(function () {
             fd.append(item.name, item.value)
         })
 
-        let origin = location.origin;
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -41,6 +42,45 @@ $(document).ready(function () {
                 $.each(xhr.responseJSON.errors, function (key, item) {
                     $("#error-"+ key).html(item)
                     $('input[name="' + key + '"]').addClass('border-color');
+                });
+            }
+        })
+    })
+
+    $('#register').click(function () {
+        let username = $('#username2').val();
+        let email = $('#email2').val();
+        let password = $('#password1').val();
+        let password1_confirmation = $('#password2').val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        let fd = new FormData();
+        fd.append('username', username);
+        fd.append('email', email);
+        fd.append('password1', password);
+        fd.append('password1_confirmation', password1_confirmation);
+
+        $.ajax({
+            url: origin + '/register',
+            method: 'POST',
+            data: fd,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                let html = '<div class="notification success large margin-bottom-55">\n' +
+                    '                    <h4>Register success!</h4>\n' +
+                    '                </div>'
+                $('#message-register').html(html)
+            },
+            error: function (xhr, status, error) {
+                $.each(xhr.responseJSON.errors, function (key, item) {
+                    $("#error-"+ key).html(item)
+                   $('input[name="' + key + '"]').addClass('border-color');
                 });
             }
         })

@@ -48,13 +48,8 @@
                     </div>
                 @endif
 
-                @if(\Illuminate\Support\Facades\Session::has('register-success'))
-                    <div class="notification success large margin-bottom-55">
-                        <h4>Success!</h4>
-                        <p>{{ \Illuminate\Support\Facades\Session::get('register-success') }}</p>
-                    </div>
-                @endif
 
+                <div id="message-register"></div>
                 <button class="button social-login via-gplus"><i class="fa fa-google-plus"></i> Log In With Google Plus
                 </button>
                 <!--Tab -->
@@ -106,29 +101,29 @@
                         <!-- Register -->
                         <div class="tab-content" id="tab2" style="display: none;">
 
-                            <form method="post" class="register" action="{{ route('auth.register') }}">
+                            <form method="post" name="register" class="register" action="{{ route('auth.register') }}">
                                 @csrf
                                 <p class="form-row form-row-wide">
                                     <label for="username2">Username:
                                         <i class="im im-icon-Male"></i>
-                                        <input type="text" class="input-text" name="username" id="username2" value=""
-                                               required/>
-                                    </label>
+                                        <input type="text" class="input-text" name="username" id="username2" value=""/>
+                                <p id="error-username" class="danger"></p>
+                                </label>
                                 </p>
 
                                 <p class="form-row form-row-wide">
                                     <label for="email2">Email Address:
                                         <i class="im im-icon-Mail"></i>
-                                        <input type="text" class="input-text" name="email" id="email2" value=""
-                                               required/>
-                                    </label>
+                                        <input type="text" class="input-text" name="email" id="email2" value=""/>
+                                <p id="error-email" class="danger"></p>
+                                </label>
                                 </p>
 
                                 <p class="form-row form-row-wide">
                                     <label for="password1">Password:
                                         <i class="im im-icon-Lock-2"></i>
                                         <input class="input-text" type="password" name="password1" id="password1"
-                                               required/>
+                                        />
                                     </label>
                                 </p>
 
@@ -136,12 +131,13 @@
                                     <label for="password2">Repeat Password:
                                         <i class="im im-icon-Lock-2"></i>
                                         <input class="input-text" type="password" name="password1_confirmation"
-                                               id="password2" required/>
+                                               id="password2"/>
                                     </label>
                                 </p>
 
                                 <p class="form-row">
-                                    <input type="submit" class="button border fw margin-top-10" name="register"
+                                    <input type="button" class="button border fw margin-top-10" id="register"
+                                           name="register"
                                            value="Register"/>
                                 </p>
 
