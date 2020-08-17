@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\House;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('layout.home');
+        $houses = House::latest()->take(8)->get();
+        return view('layout.home', compact('houses'));
     }
 }
