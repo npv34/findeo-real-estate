@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function (){
         Route::get('/search','HouseController@search')->name('house.search');
         Route::get('/{id}/detail','HouseController@detail')->name('house.detail');
         Route::get('/{id}/edit','HouseController@edit')->name('house.edit');
+        Route::post('/{id}/edit','HouseController@update')->name('house.update');
     });
 
     Route::prefix('me')->group(function (){

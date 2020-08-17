@@ -27,7 +27,7 @@ class CreateHouseRequest extends FormRequest
             'title' => 'required',
             'status' => 'required',
             'type' => 'required',
-            'price' => 'required',
+            'price' => 'required|integer',
             'address' => 'required',
             'city' => 'required',
             'state' => 'required',

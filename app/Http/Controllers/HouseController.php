@@ -101,4 +101,13 @@ class HouseController extends Controller
         $house = House::findOrFail($id);
         return view('layout.houses.edit', compact('house'));
     }
+
+    public function update(CreateHouseRequest $request, $id)
+    {
+        $house = House::findOrFail($id);
+        $house->fill($request->all());
+        $house->save();
+
+        return back();
+    }
 }

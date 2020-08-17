@@ -20,7 +20,7 @@
             <!-- Submit Page -->
             <div class="col-md-12">
                 <div class="submit-page">
-                    <form action="" method="post">
+                    <form action="{{ route('house.update', $house->id) }}" method="post">
                         @csrf
 
                         <h3>Basic Information</h3>
@@ -70,7 +70,7 @@
                                                  data-tip-content="Type overall or monthly price if property is for rent"></i>
                                     </h5>
                                     <div class="select-input disabled-first-option">
-                                        <input type="text" data-unit="USD" name="price">
+                                        <input type="number" data-unit="USD" name="price" value="{{ $house->price }}">
                                         <p class="danger" id="error-price"></p>
                                     </div>
                                 </div>
@@ -87,12 +87,12 @@
                                 <div class="col-md-4">
                                     <h5>Rooms</h5>
                                     <select class="chosen-select-no-single" name="rooms">
-                                        <option value="1" {{ ($house->room == 1) ? 'selected':'' }}>1</option>
-                                        <option value="2" {{ ($house->room == 2) ? 'selected':'' }}>2</option>
-                                        <option value="3" {{ ($house->room == 3) ? 'selected':'' }}>3</option>
-                                        <option value="4" {{ ($house->room == 4) ? 'selected':'' }}>4</option>
-                                        <option value="5" {{ ($house->room == 5) ? 'selected':'' }}>5</option>
-                                        <option value="6" {{ ($house->room == 6) ? 'selected':'' }}>More than 5</option>
+                                        <option value="1" {{ ($house->rooms == 1) ? 'selected':'' }}>1</option>
+                                        <option value="2" {{ ($house->rooms == 2) ? 'selected':'' }}>2</option>
+                                        <option value="3" @if($house->rooms == 3)  selected @endif }}>3</option>
+                                        <option value="4" {{ ($house->rooms == 4) ? 'selected':'' }}>4</option>
+                                        <option value="5" {{ ($house->rooms == 5) ? 'selected':'' }}>5</option>
+                                        <option value="6" {{ ($house->rooms == 6) ? 'selected':'' }}>More than 5</option>
                                     </select>
                                 </div>
 
