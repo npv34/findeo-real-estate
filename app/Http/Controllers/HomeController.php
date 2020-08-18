@@ -12,4 +12,8 @@ class HomeController extends Controller
         $houses = House::latest()->take(8)->get();
         return view('layout.home', compact('houses'));
     }
+
+    public function contact(){
+        return view('layout.contact');
+    }
 }

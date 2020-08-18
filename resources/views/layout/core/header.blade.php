@@ -69,7 +69,7 @@
                         </li>
                         <li><a href="#">Blog</a>
                         </li>
-                        <li><a href="#">Contact</a>
+                        <li><a class="{{ (request()->routeIs('home.contact')) ? 'current' : '' }}" href="{{ route('home.contact') }}">Contact</a>
                         </li>
 
                     </ul>

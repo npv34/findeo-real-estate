@@ -21,6 +21,7 @@ Route::post('register', 'AuthController@register')->name('auth.register');
 Route::middleware('auth')->group(function (){
     Route::get('submit-house', 'HouseController@create')->name('house.create');
     Route::get('logout', 'AuthController@logout')->name('auth.logout');
+    Route::get('contact', 'HomeController@contact')->name('home.contact');
 
     Route::prefix('houses')->group(function (){
         Route::get('/{id}/file_upload', 'HouseController@uploadFile')->name('house.upload_file');
