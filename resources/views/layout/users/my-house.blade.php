@@ -43,7 +43,7 @@
                         <ul class="my-account-nav">
                             <li class="sub-nav-title">Manage Listings</li>
                             <li><a href="" class="current"><i class="sl sl-icon-docs"></i> My House</a></li>
-                            <li><a href="{{ route('house.create') }}"><i class="sl sl-icon-action-redo"></i> Submit New Property</a></li>
+                            <li><a href="{{ route('house.create') }}"><i class="sl sl-icon-action-redo"></i> Submit New House</a></li>
                         </ul>
 
                         <ul class="my-account-nav">
