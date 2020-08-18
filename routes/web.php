@@ -39,5 +39,6 @@ Route::middleware('auth')->group(function (){
     Route::prefix('me')->group(function (){
         Route::get('my-house','UserController@getMyHouse')->name('user.getMyHouse');
         Route::get('my-profile','UserController@getMyProfile')->name('user.getMyProfile');
+        Route::post('my-profile','UserController@updateProfile')->name('user.updateProfile');
     });
 });

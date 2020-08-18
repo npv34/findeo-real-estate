@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProfileRequest;
+use App\ImageHouse;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -17,5 +21,21 @@ class UserController extends Controller
     {
         $userLogin = Auth::user();
         return view('layout.users.my-profile', compact('userLogin'));
+    }
+
+    public function updateProfile(UpdateProfileRequest $request)
+    {
+        $userLogin = User::findOrFail(Auth::id());
+        if ($request->hasFile('avatar')) {
+            $file = $request->avatar;
+            $nameImage = time() . '-' . str_replace(" ",'-', $file->getClientOriginalName());
+            $file->move('avatar', Str::lower($nameImage));
+            $userLogin->avatar = 'avatar/' . Str::lower($nameImage);
+        }
+        $userLogin->phone = $request->phone;
+        $userLogin->facebook = $request->facebook;
+        $userLogin->save();
+
+        return back();
     }
 }
