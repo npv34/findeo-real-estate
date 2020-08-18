@@ -12,4 +12,10 @@ class UserController extends Controller
         $houses = Auth::user()->houses;
         return view('layout.users.my-house', compact('houses'));
     }
+
+    public function getMyProfile()
+    {
+        $userLogin = Auth::user();
+        return view('layout.users.my-profile', compact('userLogin'));
+    }
 }

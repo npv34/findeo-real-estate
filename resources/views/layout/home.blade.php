@@ -276,7 +276,7 @@
 
                         <!-- Img -->
                         <a href="blog-post.html" class="post-img">
-                            <img src="images/blog-post-01.jpg" alt="">
+                            <img src="{{ asset('images/blog-post-01.jpg') }}" alt="">
                         </a>
 
                         <!-- Content -->
@@ -300,7 +300,7 @@
 
                         <!-- Img -->
                         <a href="blog-post.html" class="post-img">
-                            <img src="images/blog-post-02.jpg" alt="">
+                            <img src="{{ asset('images/blog-post-02.jpg') }}" alt="">
                         </a>
 
                         <!-- Content -->

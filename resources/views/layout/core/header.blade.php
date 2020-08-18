@@ -90,7 +90,7 @@
                             <div class="user-menu">
                                 <div class="user-name"><span><img src="{{ asset('images/agent-03.jpg') }}" alt=""></span>Hi, {{ \Illuminate\Support\Facades\Auth::user()->username }}!</div>
                                 <ul>
-                                    <li><a href="my-profile.html"><i class="sl sl-icon-user"></i> My Profile</a></li>
+                                    <li><a href="{{ route('user.getMyProfile') }}"><i class="sl sl-icon-user"></i> My Profile</a></li>
                                     <li><a href="{{ route('user.getMyHouse') }}"><i class="sl sl-icon-docs"></i> My House</a></li>
                                     <li><a href="{{ route('auth.logout') }}"><i class="sl sl-icon-power"></i> Log Out</a></li>
                                 </ul>
