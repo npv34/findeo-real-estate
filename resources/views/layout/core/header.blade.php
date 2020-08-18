@@ -63,17 +63,13 @@
                 <!-- Main Navigation -->
                 <nav id="navigation" class="style-1">
                     <ul id="responsive">
-                        <li><a class="current" href="{{ route('page.home') }}">Home</a>
+                        <li><a class="{{ (request()->routeIs('page.home')) ? 'current' : '' }} " href="{{ route('page.home') }}">Home</a>
                         </li>
-                        <li><a href="#">Houses</a>
+                        <li><a class="{{ (request()->routeIs('house.index')) ? 'current' : '' }}" href="{{ route('house.index') }}">Houses</a>
                         </li>
-
                         <li><a href="#">Blog</a>
-
                         </li>
-
                         <li><a href="#">Contact</a>
-
                         </li>
 
                     </ul>

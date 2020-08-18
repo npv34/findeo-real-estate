@@ -11,6 +11,12 @@ use Illuminate\Support\Str;
 
 class HouseController extends Controller
 {
+
+    public function index()
+    {
+        $houses = House::all();
+        return view('layout.houses.list', compact('houses'));
+    }
     public function create()
     {
         return view('layout.houses.add');
@@ -109,5 +115,11 @@ class HouseController extends Controller
         $house->save();
 
         return back();
+    }
+
+    public function getImageIntoHouse($id)
+    {
+        $house = House::findOrFail($id);
+        return $house->images;
     }
 }
