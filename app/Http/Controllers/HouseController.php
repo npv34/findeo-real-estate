@@ -88,7 +88,7 @@ class HouseController extends Controller
         }
 
         if ($request->tab != 0) {
-            $result = $result->where('status', '<=', $request->tab);
+            $result = $result->where('status', '=', $request->tab);
         }
 
         $houses = $result->get();
